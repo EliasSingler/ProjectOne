@@ -6,9 +6,10 @@ using namespace std;
 
 Runjournal::Runjournal()
 {
-    for(size_t i = 0, i<200;i++)
+    Runtime temp;
+    for(size_t i = 0; i<200;i++)
     {
-        journal[i] = 0;
+        journal[i] = temp;
     }
     filled = 0;
 }
@@ -19,22 +20,44 @@ void Runjournal::record(Runtime run)
 
 void Runjournal::display()
 {
-    for(size_t i = 0; i<filled; i++)
+    for(int i = 0; i<filled; i++)
     {
         cout<< "Distance: " << journal[i].get_distance() << " Time: " << journal[i].get_time().get_hours() << ":" 
         << journal[i].get_time().get_minutes()<< ":" << journal[i].get_time().get_seconds() << endl;
     }
 }
 
-/*
-void Runjournal::searchDisplay(double dis)
+void find_remove(Runtime r)
 {
-    for(size_t i = 0; i < filled; i++)
-    {
-        if(distance == dis)
-        {
-            cout<< "Distance: " << journal[i].get_distance() << " Time: " << journal[i].get_time().get_hours() << ":" << journal[i].get_time().get_minutes()<< ":" << journal[i].get_time().get_seconds() << endl;
-        }
-    }
+
 }
-*/
+
+void distance_view(double dis)
+{
+
+}
+
+void time_sort()
+{
+
+}
+
+void distance_sort()
+{
+
+}
+
+void total_time()
+{
+
+}
+
+void average_pace()
+{
+
+}
+
+void total_distance()
+{
+    
+}
