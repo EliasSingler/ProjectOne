@@ -6,6 +6,9 @@
 class Runjournal 
 {
 public:
+
+static const int CAPACITY = 200;
+
 //default constructor
 Runjournal();
 
@@ -38,7 +41,7 @@ void average_pace();
 void total_distance();
 
 private:
-Runtime journal[200];
+Runtime journal[CAPACITY];
 int filled;
 
 };

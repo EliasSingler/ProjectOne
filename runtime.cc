@@ -45,7 +45,7 @@ Runtime Runtime::operator /(const double& rhs) const
 
 bool Runtime::operator == (const Runtime& rhs)const
 {
-    if( (distance - rhs.distance) < .1 && rtime == rhs.rtime)
+    if( (distance - rhs.distance)< .1 && rtime ==rhs.rtime)
     {
         return true;
     }
@@ -54,11 +54,16 @@ bool Runtime::operator == (const Runtime& rhs)const
 
 bool Runtime::operator != (const Runtime& rhs)const
 {
-    if( abs(distance - rhs.distance) < .1 && rtime == rhs.rtime)
+    if( fabs(distance - rhs.distance) < .09 && rtime== rhs.rtime)
     {
         return false;
     }
     else {return true;}
+}
+
+bool Runtime::distance_equal(double d) const
+{
+    return (fabs(distance - d) < .09);
 }
 
 
@@ -72,8 +77,17 @@ void Runtime::input(istream&ins){
 
 void Runtime::output(std::ostream& outs)const
 {
-        outs<<distance <<':'<<setw(2)<< setfill('0') << rtime.get_hours() <<':'<<setw(2)<<setfill('0')<<rtime.get_minutes();
+        outs<< distance <<" - "<<setw(2)<< setfill('0') << rtime.get_hours() <<':'<<setw(2)<<setfill('0')<<rtime.get_minutes();
         outs<<':'<<setw(2)<<setfill('0')<<rtime.get_seconds();
+}
+
+// not sure if this is correct
+Runtime operator *(const double& lhs, const Runtime& rhs)
+{
+    Runtime temp;
+    temp.set_distance(lhs* rhs.get_distance());
+    temp.set_time(lhs*rhs.get_time());
+    return temp;
 }
 
 ostream& operator <<(ostream& outs, const Runtime& rhs)
