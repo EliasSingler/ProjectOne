@@ -27,37 +27,43 @@ void Runjournal::display()
     }
 }
 
-void find_remove(Runtime r)
+void Runjournal::find_remove(Runtime r)
+{
+    for(int i = 0; i<filled; i++)
+    {
+        if(journal[i]==r)
+        {
+            cout << "Distance: " << journal[i].get_distance() << ", Pace: " << journal[i].pace();
+        }
+    }
+}
+
+void Runjournal::distance_view(double dis)
 {
 
 }
 
-void distance_view(double dis)
+void Runjournal::time_sort()
 {
 
 }
 
-void time_sort()
+void Runjournal::distance_sort()
 {
 
 }
 
-void distance_sort()
+void Runjournal::total_time()
 {
 
 }
 
-void total_time()
+void Runjournal::average_pace()
 {
 
 }
 
-void average_pace()
-{
-
-}
-
-void total_distance()
+void Runjournal::total_distance()
 {
     
 }
