@@ -11,25 +11,37 @@ Runjournal::Runjournal()
 void Runjournal::record(Runtime run)
 {
     journal[filled] = run;
+    filled++;
 }
 
 void Runjournal::display()
 {
     for(int i = 0; i<filled; i++)
     {
-        cout<< "Distance: " << journal[i].get_distance() << " Time: " << journal[i].get_time().get_hours() << ":" 
-        << journal[i].get_time().get_minutes()<< ":" << journal[i].get_time().get_seconds() << endl;
+        cout<< journal[i].get_time() << " " << journal[i].get_distance() << endl;
     }
 }
 
-// not complete
+// not complete (check the remove part)
 void Runjournal::find_remove(Runtime r)
 {
+    char choice;
     for(int i = 0; i<filled; i++)
     {
         if(journal[i]==r)
         {
             cout << "Distance: " << journal[i].get_distance() << ", Pace: " << journal[i].pace() << endl;
+            cout << "Would you like to remove this run? (y/n)" << endl;
+            cin >> choice;
+            if(choice == 'y')
+            {
+                for(int j = i; j< filled; j++)
+                {
+                    journal[j] = journal[j+1];
+                }
+                filled--;
+                break;
+            }
         }
     }
 }
@@ -48,26 +60,64 @@ void Runjournal::distance_view(double dis)
 
 void Runjournal::time_sort()
 {
+    Runtime small;
+    int smallest;
+    Runtime temp;
+    for(int i = 0; i < filled; i++)
+    {
+        small = journal[i];
+        smallest = i;
+        for(int j = i; j < filled; j++)
+        {
+            if(journal[j].get_time() < small.get_time())
+            {
+                small = journal[j];
+                smallest = j;
+            }
+        }
+        temp = journal[i];
+        journal[i] = small;
+        journal[smallest] = temp;
 
+    }
 }
 
 void Runjournal::distance_sort()
 {
+    Runtime small;
+    int smallest;
+    Runtime temp;
+    for(int i = 0; i < filled; i++)
+    {
+        small = journal[i];
+        smallest = i;
+        for(int j = i; j < filled; j++)
+        {
+            if(journal[j].get_distance() < small.get_distance())
+            {
+                small = journal[j];
+                smallest = j;
+            }
+        }
+        temp = journal[i];
+        journal[i] = small;
+        journal[smallest] = temp;
 
+    }
 }
 
-void Runjournal::total_time()
+
+MyTime Runjournal::total_time()
 {
     MyTime time;
     for(int i = 0; i < filled; i++)
     {
         time = time + journal[i].get_time();
     }
-    cout << "Total time: " << setw(2)<< setfill('0') << time.get_hours() <<':'<<setw(2)<<
-    setfill('0')<<time.get_minutes() <<':'<<setw(2)<<setfill('0')<<time.get_seconds() << endl;
+    return time;
 }
 
-void Runjournal::average_pace()
+MyTime Runjournal::average_pace()
 {
     int i;
     MyTime totalPace;
@@ -76,16 +126,15 @@ void Runjournal::average_pace()
         totalPace = journal[i].pace() + totalPace;
     }
     totalPace = totalPace / filled;
-    cout << "The average pace of all the runs is: " << setw(2)<< setfill('0') << totalPace.get_hours() <<':'<<setw(2)<<
-    setfill('0')<<totalPace.get_minutes() <<':'<<setw(2)<<setfill('0')<<totalPace.get_seconds() << endl;
+    return totalPace;
 }
 
-void Runjournal::total_distance()
+double Runjournal::total_distance()
 {
     double total;
     for(int i = 0; i < filled; i++)
     {
         total = total + journal[i].get_distance();
     }
-    cout << "The total distance is: " << total << endl;
+    return total;
 }

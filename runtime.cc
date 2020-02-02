@@ -77,8 +77,8 @@ void Runtime::input(istream&ins){
 
 void Runtime::output(std::ostream& outs)const
 {
-        outs<< distance <<" - "<<setw(2)<< setfill('0') << rtime.get_hours() <<':'<<setw(2)<<setfill('0')<<rtime.get_minutes();
-        outs<<':'<<setw(2)<<setfill('0')<<rtime.get_seconds();
+        outs<< rtime.get_hours() <<':'<<setw(2)<<setfill('0')<<rtime.get_minutes();
+        outs<<':'<<setw(2)<<setfill('0')<<rtime.get_seconds() << " " << distance << endl;
 }
 
 // not sure if this is correct

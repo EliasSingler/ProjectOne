@@ -7,7 +7,7 @@ class Runjournal
 {
 public:
 
-static const int CAPACITY = 200;
+static const size_t CAPACITY = 200;
 
 //default constructor
 Runjournal();
@@ -32,13 +32,13 @@ void time_sort();
 void distance_sort();
 
 // reports opn the total time for all the runs record in the journal
-void total_time();
+MyTime total_time();
 
 // reports the average pace for all the runs in the journal
-void average_pace();
+MyTime average_pace();
 
 // total distance in all the runs in the journal
-void total_distance();
+double total_distance();
 
 private:
 Runtime journal[CAPACITY];
